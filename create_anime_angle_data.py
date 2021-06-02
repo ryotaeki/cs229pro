@@ -17,7 +17,7 @@ landmark_detector = CFA(output_channel_num=num_landmark + 1, checkpoint_name=che
 for i in range(15000):
     if i % 500 == 0:
         print("processing ", i)
-    input_img_name = "../dataset/trainA/" + str(i) + ".png"
+    input_img_name = "dataset/trainA/" + str(i) + ".png"
     img = cv2.imread(input_img_name)
     faces = face_detector.detectMultiScale(img)
     img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
@@ -57,4 +57,4 @@ for i in range(15000):
         angle = face_angle(left_x, left_y, right_x, right_y)
         angles = np.full((256, 256, 1), angle)
         new_data = np.concatenate([img, angles], axis=2)
-        np.save("../dataset/newtrainA/" + str(i), new_data)
+        np.save("dataset/newtrainA/" + str(i), new_data)
